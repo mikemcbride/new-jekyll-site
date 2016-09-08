@@ -27,5 +27,6 @@ namespace :deploy do
   task :fix_permissions do
     # chmod files on the server
     run "chmod 775 -R #{current_path}"
+    run "chmod 644 -R #{current_path}/.htaccess"
   end
 end

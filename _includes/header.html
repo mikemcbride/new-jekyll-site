@@ -4,7 +4,7 @@
   </div>
   <nav class="dtc v-mid w-100 tr">
     {% for page in site.pages %}
-      {% if page.title %}
+      {% if page.navEnabled %}
       <a class="f6 fw6 ml1 ml3-m ml4-l link black-80 dim" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
       {% endif %}
     {% endfor %}
