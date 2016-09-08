@@ -1,0 +1,23 @@
+# Build settings
+markdown: kramdown
+baseurl: ""
+
+# your site URL goes here
+# url: ""
+
+port: 4000
+exclude:
+  - dev_assets
+  - node_modules
+  - package.json
+  - gulpfile.js
+  - README.md
+  - Capfile
+  - config
+
+# Plugins
+gems:
+  - jekyll-paginate
+
+# How many posts to show per page
+paginate: 5

@@ -1,0 +1,12 @@
+<header class="fixed dt w-100 pa3 ph5-ns bb b--black-10 bg-white z-2">
+  <div class="dtc w-50">
+    <a class="f5 f4-ns fw6 mt0 mb1 link black-80 dim" href="{{ site.baseurl }}/">{{ site.data.settings.title }}</a>
+  </div>
+  <nav class="dtc v-mid w-100 tr">
+    {% for page in site.pages %}
+      {% if page.title %}
+      <a class="f6 fw6 ml1 ml3-m ml4-l link black-80 dim" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+</header>

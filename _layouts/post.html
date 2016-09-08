@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div class="w-100 mw8 center">
+  <header class="post-header lh-copy">
+    <h1 class="fw6 mb0">{{ page.title }}</h1>
+    <p class="ttu fw4 gray">{{ page.date | date_to_string }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+  </header>
+
+  <article class="lh-copy measure-wide tl serif post-content">
+    {{ content }}
+  </article>
+
+</div>
+
+{% include disqus.html %}

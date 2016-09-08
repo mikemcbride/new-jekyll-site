@@ -1,0 +1,30 @@
+.line {
+  height: 2px;
+  top: 50%;
+  left: var(--md);
+  right: var(--md);
+}
+
+.post-list {
+  article:last-of-type {
+    border-bottom: 0;
+  }
+}
+
+.post-content {
+  /*
+   *  since the markup is dynamically generated,
+   *  we want to control a few things about the
+   *  paragraph text in our articles. Normally
+   *  we would do this with classes, but we can't.
+   */
+
+  p {
+    line-height: 1.6;
+    font-size: 1rem;
+
+    @media (min-width: 30em) {
+      font-size: 1.25rem;
+    }
+  }
+}

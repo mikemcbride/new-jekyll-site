@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+<section class="post-list db center w-100">
+
+  <div class="dt center">
+
+    <!-- posts list -->
+    <section class="dtc measure-wide-ns">
+      {% for post in paginator.posts %}
+
+        <article class="bb b--black-20 mb3 pa2 pa3-ns">
+
+          <header>
+             <h3 class="mb0 lh-copy fw5 f3">
+               <a class="link dim" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+             </h3>
+
+             <div class="silver mb2 f6 lh-copy fw4 ttu">{{ post.date | date_to_string }}</div>
+          </header>
+
+          {% if post.previewImage %}<img src="{{ post.previewImage | prepend: site.baseurl }}" class="mb3">{% endif %}
+          {% if post.excerpt %}<p class="lh-copy">{{ post.excerpt }}</p>{% endif %}
+
+        </article>
+
+      {% endfor %}
+    </section>
+
+  </div>
+
+  <!-- pagination links -->
+  {% if paginator.total_pages > 1 %}
+    <div class="dt dt--fixed w-100 measure-wide-ns center">
+      <div class="dtc tl v-mid">
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path }}" class="ttu tracked br1 pv2 ph3 fw4 ba dib dim blue b--blue">Older</a>
+        {% else %}
+          <span class="ttu tracked br1 pv2 ph3 fw4 ba dib silver b--silver">Newer</span>
+        {% endif %}
+      </div>
+
+      <div class="dtc tc v-mid">
+        <span class="page_number ">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+      </div>
+
+      <div class="dtc tr v-mid">
+        {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="ttu tracked br1 pv2 ph3 fw4 ba dib dim blue b--blue">Newer</a>
+        {% else %}
+        <span class="ttu tracked br1 pv2 ph3 fw4 ba dib silver b--silver">Newer</span>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+</section>

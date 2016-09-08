@@ -1,0 +1,57 @@
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after { box-sizing: inherit; }
+
+
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure {
+  margin-bottom: var(--sm);
+}
+
+body {
+  color: var(--text-main);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+ul, ol {
+  margin-left: var(--md);
+}
+
+li {
+  > ul,
+  > ol {
+    margin-bottom: 0;
+  }
+}
+
+blockquote {
+  font-style: italic;
+  color: var(--text-muted);
+  border-left: 3px solid var(--border-color);
+  padding: 0 var(--md);
+  line-height: 1.5;
+  margin-left: 0;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
