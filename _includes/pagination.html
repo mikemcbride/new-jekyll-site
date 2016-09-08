@@ -1,0 +1,24 @@
+<!-- pagination links -->
+{% if paginator.total_pages > 1 %}
+	<div class="dt dt--fixed w-100 measure-wide-ns center">
+		<div class="dtc tl v-mid">
+			{% if paginator.previous_page %}
+				<a href="{{ paginator.previous_page_path }}" class="ttu tracked br1 pv2 ph3 fw4 ba dib dim blue b--blue">Older</a>
+			{% else %}
+				<span class="ttu tracked br1 pv2 ph3 fw4 ba dib silver b--silver">Newer</span>
+			{% endif %}
+		</div>
+
+		<div class="dtc tc v-mid">
+			<span class="page_number ">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+		</div>
+
+		<div class="dtc tr v-mid">
+			{% if paginator.next_page %}
+			<a href="{{ paginator.next_page_path }}" class="ttu tracked br1 pv2 ph3 fw4 ba dib dim blue b--blue">Newer</a>
+			{% else %}
+			<span class="ttu tracked br1 pv2 ph3 fw4 ba dib silver b--silver">Newer</span>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

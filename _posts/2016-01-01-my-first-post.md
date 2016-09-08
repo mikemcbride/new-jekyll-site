@@ -6,11 +6,7 @@ previewImage: "/assets/img/cat.jpg"
 excerpt: "This is some teaser text to get you interested in reading my post."
 ---
 
-Welcome to Jekyll! This is a post.
-
-<div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-</div>
+Welcome to Jekyll! This is an example blog post that shows several types of HTML content supported in this theme.
 
 Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 

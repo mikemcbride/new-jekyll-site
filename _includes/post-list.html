@@ -1,0 +1,31 @@
+<section class="post-list db center w-100">
+
+  <div class="dt center">
+
+    <!-- posts list -->
+    <section class="dtc measure-wide-ns">
+      {% for post in paginator.posts %}
+
+        <article class="bb b--black-20 mb3 pa2 pa3-ns">
+
+          <header>
+             <h3 class="mb0 lh-copy fw5 f3">
+               <a class="link dim" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+             </h3>
+
+             <div class="silver mb2 f6 lh-copy fw4 ttu">{{ post.date | date_to_string }}</div>
+          </header>
+
+          {% if post.previewImage %}<img src="{{ post.previewImage | prepend: site.baseurl }}" class="mb3">{% endif %}
+          {% if post.excerpt %}<p class="lh-copy">{{ post.excerpt }}</p>{% endif %}
+
+        </article>
+
+      {% endfor %}
+    </section>
+
+  </div>
+
+  {% include pagination.html %}
+
+</section>

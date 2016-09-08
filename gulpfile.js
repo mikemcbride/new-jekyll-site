@@ -1,6 +1,5 @@
 'use strict';
 
-// Load plugins
 const cp = require('child_process');
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
@@ -10,6 +9,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const normalize = require('postcss-normalize');
 const rename = require('gulp-rename');
 const del = require('del');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 const browserSync = require('browser-sync');
@@ -81,6 +82,15 @@ gulp.task('styles', () => {
     .pipe(browserSync.reload({ stream: true }));
 });
 
+// concatenate and minify javascript
+gulp.task('scripts', () => {
+  return gulp.src(['dev_assets/js/*.js'])
+    .pipe(concat('main.js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest('assets/js'));
+});
+
 // compress and copy images
 gulp.task('images', () => {
   return gulp.src('dev_assets/img/*')
@@ -99,20 +109,21 @@ gulp.task('clean', () => {
 
 // build task to populate the assets folder
 gulp.task('build', ['clean'], () => {
-  gulp.start('styles', 'images');
+  gulp.start('styles', 'scripts', 'images');
 });
 
 // build files and watch for changes
-gulp.task('watch', ['clean'], () => {
-  gulp.start('styles', 'images');
+gulp.task('watch', ['build'], () => {
+  gulp.start('styles', 'scripts', 'images');
   gulp.watch('dev_assets/styles/*', ['styles']);
+  gulp.watch('dev_assets/js/*', ['scripts']);
   gulp.watch('dev_assets/img/*', ['images']);
   gulp.watch(jekyllFiles, ['jekyll-rebuild']);
 });
 
 // serve task runs bundle-install, kicks off build, starts server, watches for changes
 gulp.task('serve', ['bundle-install'], () => {
-  gulp.start('build', 'browser-sync', 'watch');
+  gulp.start('watch', 'browser-sync');
 });
 
 // default task kicks off serve
