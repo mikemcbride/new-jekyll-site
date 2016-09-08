@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.html",
   "scripts": {
-    "serve": "gulp serve",
+    "start": "gulp serve",
     "deploy": "gulp deploy"
   },
   "dependencies": {

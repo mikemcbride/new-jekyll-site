@@ -31,7 +31,7 @@ Got it? Awesome. I recommend downloading this repo, NOT cloning it via git. Here
 Once you've done that, head back to the terminal, `cd` into the project, then:
 
 ```
-npm install && npm run serve
+npm install && npm start
 ```
 
 That will do a `bundle install`, build the assets, build Jekyll, and start BrowserSync at port 3000.
