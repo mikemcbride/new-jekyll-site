@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.html",
   "scripts": {
-    "serve": "gulp serve"
+    "serve": "gulp serve",
+    "deploy": "gulp deploy"
   },
   "dependencies": {
     "autoprefixer": "^6.4.1",
