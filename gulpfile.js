@@ -120,6 +120,6 @@ gulp.task('default', ['serve']);
 
 
 // deploy task will build and deploy the site to Digital Ocean using Capistrano.
-gulp.task('deploy', ['build', 'jekyll-build'], (done) => {
+gulp.task('deploy', ['bundle-install', 'build', 'jekyll-build'], (done) => {
   return cp.spawn('cap', ['deploy']).on('close', done)
 });
