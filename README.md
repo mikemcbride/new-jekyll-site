@@ -15,7 +15,7 @@ As far as Jekyll sites go, this template does some pretty unconventional things.
 
 Instead, this template uses Gulp to kick off tasks to compile your styles, using PostCSS. It utilizes a `dev_assets` folder for styles, scripts, and images, and compiled/minified assets get put into `assets` during the build process. It also includes BrowserSync, so your browser automatically opens during the build process. And it's got watch tasks baked in to recompile, and because we have BrowserSync, your browser automatically reloads. So overall, quite a few niceties over the vanilla Jekyll setup.
 
-I've also included a `Capfile` and a `deploy.rb` that you can modify (should only be a couple of lines you have to adjust for your server) to build and deploy your site to a Digital Ocean web server running Apache. You'll want to follow these steps to get your server set up. I haven't tested this for other hosting services, but feel free to cut a PR with enhancements!
+I've also included a `Capfile` and a `deploy.rb` that you can modify (should only be a couple of lines you have to adjust for your server) to build and deploy your site to a Digital Ocean web server running Apache. You'll want to [follow these steps](https://dsgn.io/thoughts/post/jekyll-deployment-with-digitalocean/) to get your server set up. I haven't tested this for other hosting services, but feel free to cut a PR with enhancements!
 
 ### Running it locally
 
