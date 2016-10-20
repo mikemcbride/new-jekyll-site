@@ -38,7 +38,7 @@ That will do a `bundle install`, build the assets, build Jekyll, and start Brows
 
 ### More Setup
 
-"I thought this was supposed to be easy!"
+> "I thought this was supposed to be easy!"
 
 Okay, there are just a few housekeeping things you need to do to.
 
@@ -47,8 +47,9 @@ Okay, there are just a few housekeeping things you need to do to.
 1. First of all, you probably want to head over to `_config.yml` and update some settings there.
 2. You will also want to go into `_data/` and update both the settings and social files.
 3. In `_includes/disqus.html` - I typically use Disqus for comments because it's super easy. If you don't want it, remove the file and get rid of the import line at the bottom of `_layouts/post.html` and you're done. If you want to keep them, just update the `disqus_shortname` variable in the disqus include file.
-4. You'll likely notice that I don't include very much CSS here. That's because this uses [Tachyons](https://tachyons.io) for layout because it's awesome. If you don't like it, remove the link in `_includes/head.html`, but be aware that you will lose almost all styling and layout.
-5. Update `package.json` if you want - the name field is intentionally left blank for you. Won't break anything if you leave it out, unless you want to publish your website to NPM, which would be bizarre.
+4. This theme uses [Tachyons](https://tachyons.io) for layout. If you don't like it, remove the `_tachyons.pcss` partial and remove the `@import` from `main.pcss`, but be aware that you will lose almost all styling and layout.
+5. Update `package.json` if you want - the name field is intentionally left blank for you. It won't break anything if you leave it out, unless you want to publish your site as an NPM package, which would be a little weird.
+6. Since you copied this instead of cloning, you'll need to `git init` if you want to keep this in version control.
 
 ## Contribute
 

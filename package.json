@@ -4,7 +4,7 @@
   "main": "index.html",
   "scripts": {
     "start": "gulp serve",
-    "deploy": "gulp deploy"
+    "deploy": "gulp build && cap deploy"
   },
   "dependencies": {
     "autoprefixer": "^6.4.1",
@@ -16,6 +16,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^3.0.3",
     "gulp-postcss": "^6.1.1",
+    "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
@@ -26,6 +27,7 @@
     "postcss-custom-media": "^5.0.1",
     "postcss-import": "^8.1.2",
     "postcss-nested": "^1.0.0",
-    "postcss-normalize": "^0.3.0"
+    "postcss-normalize": "^0.3.0",
+    "run-sequence": "^1.2.2"
   }
 }
