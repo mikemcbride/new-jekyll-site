@@ -42,7 +42,7 @@ const imageOpts = {
       '**/*.jpg': {
         quality: 75
       },
-      '**/*.png' {
+      '**/*.png': {
         quality: 75
       }
     }, {
