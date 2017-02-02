@@ -4,7 +4,7 @@
   "main": "index.html",
   "scripts": {
     "start": "gulp serve",
-    "deploy": "gulp build && cap deploy"
+    "deploy": "gulp compile && git add --all && git commit -m 'deploying site' && git push"
   },
   "dependencies": {
     "autoprefixer": "^6.4.1",
@@ -16,8 +16,8 @@
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^3.0.3",
     "gulp-postcss": "^6.1.1",
-    "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-responsive": "^2.7.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
     "imagemin-pngquant": "^5.0.0",

@@ -12,6 +12,7 @@ const del = require('del')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const imagemin = require('gulp-imagemin')
+const responseive = require('gulp-responsive')
 const pngquant = require('imagemin-pngquant')
 const browserSync = require('browser-sync')
 const queries = require('css-mqpacker')
@@ -21,7 +22,6 @@ const media = require('postcss-custom-media')
 const vars = require('postcss-css-variables')
 const conditionals = require('postcss-conditionals')
 const nested = require('postcss-nested')
-const purify = require('gulp-purifycss')
 const runSequence = require('run-sequence')
 
 // other variables
@@ -38,6 +38,27 @@ const plugins = [
   autoprefixer()
 ]
 const cleanCssOpts = { advanced: false, keepSpecialComments: 0 }
+const imageOpts = {
+  responsive: [
+    {
+      '**/*.jpg': {
+        quality: 75
+      },
+      '**/*.png' {
+        quality: 75
+      }
+    }, {
+      progressive: true,
+      errorOnUnusedConfig: false,
+      errorOnUnusedImage: false,
+      errorOnEnlargement: false
+    }],
+  imagemin: {
+    progressive: true,
+    svgoPlugins: [{removeViewBox: false}],
+    use: [pngquant()]
+  }
+}
 const jekyllFiles = ['index.html', '_includes/*.html', '_layouts/*.html', '*.md', '_posts/*', 'assets/**']
 
 // TASKS
@@ -53,7 +74,7 @@ gulp.task('bundle-install', done => {
 // build the Jekyll site
 gulp.task('jekyll-build', done => {
   browserSync.notify('Building Jekyll')
-  return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
+  return cp.spawn('bundle', ['exec', 'jekyll', 'build'], {stdio: 'inherit'})
     .on('close', done)
 })
 
@@ -84,12 +105,6 @@ gulp.task('styles', () => {
     .pipe(browserSync.reload({ stream: true }))
 })
 
-// purify css removes unused CSS
-gulp.task('purify-css', () => {
-  return gulp.src('assets/styles/main.min.css')
-    .pipe(purify(['_site/**/*.html']))
-})
-
 // concatenate and minify javascript
 gulp.task('scripts', () => {
   return gulp.src(['dev_assets/js/*.js'])
@@ -101,34 +116,39 @@ gulp.task('scripts', () => {
 
 // compress and copy images
 gulp.task('images', () => {
-  return gulp.src('dev_assets/img/*')
-    .pipe(imagemin({
-      progressive: true,
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant()]
-    }))
+  return gulp.src('dev_assets/img/**')
+    .pipe(responsive(...imageOpts.responsive))
+    .pipe(imagemin(imageOpts.imagemin))
     .pipe(gulp.dest('assets/img'))
 })
 
 // clean up assets folder
 gulp.task('clean', () => {
-  return del(['assets'])
+  return del(['assets', 'docs'])
 })
 
-// build task to populate the assets folder
-gulp.task('assets', () => {
-  gulp.start(['scripts', 'styles', 'images'])
+gulp.task('copy-cname', () => {
+  return gulp.src('config/CNAME').pipe(gulp.dest('docs'))
 })
 
+gulp.task('copy-to-docs', () => {
+  return gulp.src('_site/**').pipe(gulp.dest('docs'))
+})
+
+// build process to be run in sequence to ensure everything runs in proper order
 gulp.task('build', cb => {
-  runSequence('bundle-install', 'clean', ['scripts', 'styles', 'images'], 'jekyll-build', 'purify-css', cb)
+  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build', cb)
+})
+
+gulp.task('compile', cb => {
+  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build', 'copy-cname', 'copy-to-docs', cb)
 })
 
 // build files and watch for changes
-gulp.task('watch', ['build'], () => {
+gulp.task('watch', () => {
   gulp.watch('dev_assets/styles/*', ['styles'])
   gulp.watch('dev_assets/js/*', ['scripts'])
-  gulp.watch('dev_assets/img/*', ['images'])
+  gulp.watch('dev_assets/img/**', ['images'])
   gulp.watch(jekyllFiles, ['jekyll-rebuild'])
 })
 

@@ -15,7 +15,7 @@ As far as Jekyll sites go, this template does some pretty unconventional things.
 
 Instead, this template uses Gulp to kick off tasks to compile your styles, using PostCSS. It utilizes a `dev_assets` folder for styles, scripts, and images, and compiled/minified assets get put into `assets` during the build process. It also includes BrowserSync, so your browser automatically opens during the build process. And it's got watch tasks baked in to recompile, and because we have BrowserSync, your browser automatically reloads. So overall, quite a few niceties over the vanilla Jekyll setup.
 
-I've also included a `Capfile` and a `deploy.rb` that you can modify (should only be a couple of lines you have to adjust for your server) to build and deploy your site to a Digital Ocean web server running Apache. You'll want to [follow these steps](https://dsgn.io/thoughts/post/jekyll-deployment-with-digitalocean/) to get your server set up. I haven't tested this for other hosting services, but feel free to cut a PR with enhancements!
+The config here is set up to be hosted on and deploy to GitHub Pages. There's an npm deploy script included in the `package.json` which will do this for you, as long as your repo is configured to deploy to GH Pages from the `docs` directory. You can [read more about that here](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch)
 
 ### Running it locally
 
@@ -42,7 +42,7 @@ That will do a `bundle install`, build the assets, build Jekyll, and start Brows
 
 Okay, there are just a few housekeeping things you need to do to.
 
-> **TODO:** would be SICK if we could turn this into a Yeoman generator where we make people fill this shit out in a CLI as part of project generation.
+> **TODO:** would be SICK to turn this into a Yeoman generator where we make people fill this out in a CLI as part of project generation.
 
 1. First of all, you probably want to head over to `_config.yml` and update some settings there.
 2. You will also want to go into `_data/` and update both the settings and social files.
