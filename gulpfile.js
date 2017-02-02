@@ -6,7 +6,6 @@ const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 const cleancss = require('gulp-clean-css')
 const sourcemaps = require('gulp-sourcemaps')
-const normalize = require('postcss-normalize')
 const rename = require('gulp-rename')
 const del = require('del')
 const concat = require('gulp-concat')
@@ -33,7 +32,6 @@ const plugins = [
   conditionals(),
   media(),
   queries(),
-  normalize(),
   perfectionist({ format: 'compact' }),
   autoprefixer()
 ]

@@ -21,13 +21,13 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
     "imagemin-pngquant": "^5.0.0",
+    "normalize.css": "latest",
     "perfectionist": "^2.3.0",
     "postcss-conditionals": "^2.0.2",
     "postcss-css-variables": "^0.5.2",
     "postcss-custom-media": "^5.0.1",
     "postcss-import": "^8.1.2",
     "postcss-nested": "^1.0.0",
-    "postcss-normalize": "^0.3.0",
     "run-sequence": "^1.2.2"
   }
 }
