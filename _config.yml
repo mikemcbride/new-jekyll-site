@@ -1,5 +1,8 @@
 # Build settings
 markdown: kramdown
+
+# baseurl - when publishing to github pages, this would be the URL of the repo.
+# e.g., if you have username.github.io/my-awesome-repo, you'd put "/my-awesome-repo"
 baseurl: ""
 
 # your site URL goes here
@@ -12,8 +15,8 @@ exclude:
   - package.json
   - gulpfile.js
   - README.md
-  - Capfile
   - config
+  - npm-debug.log
 
 # Plugins
 gems:

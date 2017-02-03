@@ -76,13 +76,17 @@ gulp.task('jekyll-build', done => {
     .on('close', done)
 })
 
-// trigger BrowserSync reload upon rebuild
-gulp.task('jekyll-rebuild', ['jekyll-build'], () => {
-  browserSync.reload()
+gulp.task('jekyll-build-dev', done => {
+  browserSync.notify('Building Jekyll')
+  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--config', ['_config.yml', '_config_dev.yml']], {stdio: 'inherit'})
+    .on('close', done)
 })
 
+// trigger BrowserSync reload upon rebuild
+gulp.task('jekyll-rebuild', ['jekyll-build-dev'], () => browserSync.reload())
+
 // start BrowserSync
-gulp.task('browser-sync', ['jekyll-build'], () => {
+gulp.task('browser-sync', ['jekyll-build-dev'], () => {
   browserSync({
     server: {
       baseDir: '_site'
@@ -125,8 +129,8 @@ gulp.task('clean', () => {
   return del(['assets', 'docs'])
 })
 
-gulp.task('copy-cname', () => {
-  return gulp.src('config/CNAME').pipe(gulp.dest('docs'))
+gulp.task('copy-config', () => {
+  return gulp.src('config/**', {dot: true}).pipe(gulp.dest('docs'))
 })
 
 gulp.task('copy-to-docs', () => {
@@ -135,11 +139,11 @@ gulp.task('copy-to-docs', () => {
 
 // build process to be run in sequence to ensure everything runs in proper order
 gulp.task('build', cb => {
-  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build', cb)
+  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build-dev', cb)
 })
 
 gulp.task('compile', cb => {
-  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build', 'copy-cname', 'copy-to-docs', cb)
+  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build', 'copy-config', 'copy-to-docs', cb)
 })
 
 // build files and watch for changes
