@@ -139,11 +139,11 @@ gulp.task('copy-to-docs', () => {
 
 // build process to be run in sequence to ensure everything runs in proper order
 gulp.task('build', cb => {
-  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build-dev', cb)
+  runSequence('bundle-install', 'clean', ['styles', 'images', 'scripts'], 'jekyll-build-dev', cb)
 })
 
 gulp.task('compile', cb => {
-  runSequence('bundle-install', 'clean', ['styles', 'images'], 'jekyll-build', 'copy-config', 'copy-to-docs', cb)
+  runSequence('bundle-install', 'clean', ['styles', 'images', 'scripts'], 'jekyll-build', 'copy-config', 'copy-to-docs', cb)
 })
 
 // build files and watch for changes
